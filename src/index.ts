@@ -1,6 +1,7 @@
 
 // const {ApolloServer} = require('apollo-server')
 import express from 'express'
+import path from 'path'
 import { ApolloServer } from 'apollo-server-express'
 
 import mongoose from 'mongoose'
@@ -84,9 +85,23 @@ async function startApolloServer(){
     const app = express()
 
     // app.use('/graphql',mw)
-    
 
     // Apollo 
+    const _dirname = path.dirname("")
+    const buildPath = path.join(_dirname, "../news_system_client/build")
+
+    app.use(express.static(buildPath))
+    await app.get("/*", function(req, res){
+        res.sendFile(
+            path.join(__dirname, "../news_system_client/build/index.html"),
+            function(err){
+                if(err){
+                    res.status(500).send(err)
+                }
+            }
+        )
+    })
+
     await server.start();
     
     server.applyMiddleware({ app })
