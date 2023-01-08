@@ -111,7 +111,7 @@ async function startApolloServer(){
         .then(()=>{
             console.log("MONGODB connected!")
             return app.listen({ port: 4000 }, () =>
-            console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+            console.log(`🚀 Server now is ready at http://localhost:4000${server.graphqlPath}`)
           );
         }).then((res: any) => {
             console.log(`Server running at ${res}`)
