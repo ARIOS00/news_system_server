@@ -35,6 +35,8 @@ import Region from './models/Region'
 
 import { getUserFromToken } from './util/getUserFromToken'
 
+import cors from "cors"
+
 async function startApolloServer(){
 
     //initial paramters
@@ -83,6 +85,7 @@ async function startApolloServer(){
     // }
     
     const app = express()
+    app.use(cors())
 
     // app.use('/graphql',mw)
 
