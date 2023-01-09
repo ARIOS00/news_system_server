@@ -35,7 +35,7 @@ import Region from './models/Region'
 
 import { getUserFromToken } from './util/getUserFromToken'
 
-import cors from "cors"
+const cors = require('cors')
 
 async function startApolloServer(){
 
@@ -85,7 +85,12 @@ async function startApolloServer(){
     // }
     
     const app = express()
-    app.use(cors())
+   
+    app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
 
     // app.use('/graphql',mw)
 
